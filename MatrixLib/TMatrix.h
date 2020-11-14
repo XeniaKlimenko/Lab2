@@ -6,13 +6,13 @@
   template <class ValType>
   class TMatrix : public TVector<TVector<ValType>>
   {
-    using TVector<TVector<ValType>>::pVector;
-    using TVector<TVector<ValType>>::Size;
-    using TVector<TVector<ValType>>::StartIndex;
+    using TVector<TVector<ValType> >::pVector;
+    using TVector<TVector<ValType> >::Size;
+    using TVector<TVector<ValType> >::StartIndex;
   public:
     TMatrix(int s = 10);
     TMatrix(const TMatrix& mt);                    // копирование
-    TMatrix(const TVector<TVector<ValType>>& mt);  // преобразование типа
+    TMatrix(const TVector<TVector<ValType> >& mt);  // преобразование типа
     bool operator==(const TMatrix& mt) const;      // сравнение
     bool operator!=(const TMatrix& mt) const;      // сравнение
     TMatrix& operator= (const TMatrix& mt);        // присваивание
@@ -35,7 +35,7 @@
   };
 
   template<typename ValType>
-  TMatrix<ValType>::TMatrix(int s) : TVector<TVector<ValType>>(s)
+  TMatrix<ValType>::TMatrix(int s) : TVector<TVector<ValType> >(s)
   {
     if (s > 0)
     {
@@ -47,13 +47,13 @@
 
   template<typename ValType>
   TMatrix<ValType>::TMatrix(const TMatrix<ValType>& mt)
-    : TVector<TVector<ValType>>(mt)
+    : TVector<TVector<ValType> >(mt)
   {
   }
 
   template<typename ValType>
-  TMatrix<ValType>::TMatrix(const TVector<TVector<ValType>>& mt)
-    : TVector<TVector<ValType>>(mt)
+  TMatrix<ValType>::TMatrix(const TVector<TVector<ValType> >& mt)
+    : TVector<TVector<ValType> >(mt)
   {
   }
 
