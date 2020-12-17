@@ -18,6 +18,7 @@
     TMatrix& operator= (const TMatrix& mt);        // присваивание
     TMatrix  operator+ (const TMatrix& mt);        // сложение
     TMatrix  operator- (const TMatrix& mt);        // вычитание
+    TMatrix  operator* (const TMatrix& mt);        //умножение
 
     // ввод / вывод
     friend std::istream& operator>>(std::istream& in, TMatrix& mt)
@@ -102,6 +103,34 @@
   TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix& mt)
   {
     return TVector<TVector<ValType> >::operator-(mt);
+  }
+
+  template<class ValType>
+  TMatrix<ValType> TMatrix<ValType>::operator*(const TMatrix& mt)
+  {
+    if (this->GetSize() != mt.Size)
+      throw "Error";
+
+    TMatrix<ValType> tmp(*this);
+    TMatrix<ValType> res(this->Size);
+
+    int row = this->Size;
+    int col = this->Size;
+
+
+    for (int i = 0; i < row; i++)
+    {
+      for (int j = 0; j < col; j++)
+      {
+        res.pVector[i][j] = 0;
+        for (int k = 0; k < col; k++)
+        {
+          res.pVector[i][j] += (tmp.pVector[i][k] * mt.pVector[k][j]);
+        }
+        col--;
+      }
+    }
+    return res;
   }
 
   #endif
